@@ -42,7 +42,7 @@
   import loading from '../components/loading.vue';
   import simpleMovieInfo from '../components/simple-movie-info.vue';
 
-  import {getMovieList} from '../api/douban.js'
+  import {getMovieList, getSearchList} from '../api/douban.js'
 
 
   export default {
@@ -64,18 +64,30 @@
     computed: {
       startPosition() {
         return this.count * (this.currentPage - 1);
+      },
+      searchText() {
+        return this.$route.query.q
       }
     },
     methods: {
       getList() {
         this.hasList = false;
         this.loading = true;
-        getMovieList(this.category, this.count, this.startPosition).then(response => {
-          console.log(response);
-          this.movieList = response.data
-          this.loading = false
-          this.hasList = true
-        })
+        if (this.searchText) {
+          getSearchList(this.searchText, this.count, this.startPosition).then(response => {
+            console.log(response);
+            this.movieList = response.data
+            this.loading = false
+            this.hasList = true
+          })
+        } else {
+          getMovieList(this.category, this.count, this.startPosition).then(response => {
+            console.log(response);
+            this.movieList = response.data
+            this.loading = false
+            this.hasList = true
+          })
+        }
       },
       getCategory() {
         this.category = this.$route.params.category;

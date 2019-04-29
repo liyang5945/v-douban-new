@@ -22,9 +22,9 @@ export function getCelebrity(celebrityID) {
   })
 }
 
-export function searchList(searchText) {
+export function getSearchList(searchText, count, start) {
   return request({
-    url: '/search?q=' + searchText,
+    url: 'movie/search?q=' + searchText + '&count=' + count + '&start=' + start,
     method: 'get',
   })
 }
