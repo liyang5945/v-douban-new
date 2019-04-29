@@ -1,145 +1,84 @@
 <template>
-  <div  class="celebrity">
+  <div class="celebrity">
     <headbar :title="celebrity.name"></headbar>
     <back></back>
     <div v-if="hasData" class="c-main-info">
-      <div class="c-head-wrapper">
-        <div class="c-head">
-          <img class="avatar" :src="celebrity.avatars.medium" >
-          <div class="c-desc">
-            <h2 class="title">{{celebrity.name}}</h2>
-            <p>性别 {{celebrity.gender}}</p>
-            <p>别名  <span>{{celebrity.aka[0]}}</span></p>
-            <p>英文名  {{celebrity.name_en}}</p>
-            <p>出生地 {{celebrity.born_place}}</p>
-            <a class="more-info" :href="celebrity.mobile_url">查看更多信息>></a>
-          </div>
+      <div class="c-head-wrapper clearfix">
+        <img class="avatar-img" :src="celebrity.avatars.medium">
+
+        <div class="c-desc-box">
+          <h2 class="celebrity-name">{{celebrity.name}}</h2>
+          <p class="c-desc">性别 {{celebrity.gender}}</p>
+          <p class="c-desc">别名 <span>{{celebrity.aka[0]}}</span></p>
+          <p class="c-desc">英文名 {{celebrity.name_en}}</p>
+          <p class="c-desc">出生地 {{celebrity.born_place}}</p>
+          <a class="more-info-link" :href="celebrity.mobile_url">查看更多信息>></a>
         </div>
-        <div class="c-headbg">
+        <div class="c-head-bg">
           <img :src="celebrity.avatars.large" width="100%">
         </div>
       </div>
       <div class="works">
         <h2>代表作品</h2>
         <div v-for="work in celebrity.works" class="work">
-          <movie-detail :item="work.subject"></movie-detail>
+          <simple-movie-info :item="work.subject"></simple-movie-info>
         </div>
       </div>
     </div>
-    <div v-if="loading"  id="loading">
-      <div id="loading-center">
-        <div id="loading-center-absolute">
-          <div class="object"></div>
-          <div class="object"></div>
-          <div class="object"></div>
-          <div class="object"></div>
-          <div class="object"></div>
-          <div class="object"></div>
-          <div class="object"></div>
-          <div class="object"></div>
-          <div class="object"></div>
-          <div class="object"></div>
-        </div>
-      </div>
+    <div v-if="loading" class="loading-wrapper">
+      <loading></loading>
     </div>
-
-
   </div>
 </template>
 
 <script>
   import headbar from '../components/headbar.vue'
   import back from '../components/back.vue'
-  import rating from '../components/rating.vue'
-  import movieDetail from './movie-detail.vue'
-  const celebrityUrl = 'https://api.douban.com/v2/movie/celebrity/';
+  import loading from '../components/loading.vue'
+  import simpleMovieInfo from '../components/simple-movie-info.vue';
+
+  import {getCelebrity} from '../api/douban.js'
+
   export default {
     data(){
       return{
+        celebrityId: '',
         celebrity:{},
         hasData:false,
         loading:true
       }
     },
-    watch:{
-      '$route':'getCelebrity'
-    },
     methods:{
       // 通过jsonp方法获取影人详细信息
       getCelebrity(){
         if(this.$route.params.id!==undefined) {
-          this.$http.jsonp(celebrityUrl + this.$route.params.id).then((response) => {
-            this.celebrity = response.body;
-            this.hasData=true;
-            this.loading = false;
-          });
+          // this.$http.jsonp(celebrityUrl + this.$route.params.id).then((response) => {
+          //   this.celebrity = response.body;
+          //   this.hasData=true;
+          //   this.loading = false;
+          // });
+          getCelebrity(this.celebrityId).then(response => {
+            console.log(response);
+            this.celebrity = response.data
+            this.loading = false
+            this.hasData = true
+          })
         }
-      }
+      },
+      getCelebrityId() {
+        console.log(this.$route.params.id);
+        this.celebrityId = this.$route.params.id;
+      },
     },
     created(){
+      this.getCelebrityId();
       this.getCelebrity();
     },
     components:{
       headbar,
       back,
-      rating,
-      movieDetail
+      loading,
+      simpleMovieInfo
     }
   }
 </script>
-
-<style lang="sass" type="text/sass">
-  .celebrity
-    #loading
-      padding: 150px 0
-    .c-head-wrapper
-      position: relative
-      width: 100%
-      height: 240px
-      border-bottom: 1px solid #ccc
-      /*overflow: hidden*/
-      color: #fff
-      .c-head
-        padding: 20px 15px
-        .avatar
-          display: inline-block
-          max-width: 150px
-        .c-desc
-          position: absolute
-          left: 180px
-          .title
-            line-height: 24px
-            font-size: 24px
-            padding: 10px 0
-          p
-            line-height: 30px
-            font-size: 16px
-          .more-info
-            line-height: 30px
-            font-size: 16px
-            color: #ddd
-        .avatar
-          position: absolute
-          left:  15px
-          top:  20px
-      .c-headbg
-        position: absolute
-        top: 0
-        left: 0
-        width: 100%
-        height: 240px
-        overflow: hidden
-        z-index: -1
-        -webkit-filter: blur(10px)
-        filter: blur(10px)
-    .works
-      padding: 20px 15px
-      h2
-        line-height: 30px
-        font-size: 24px
-        padding-bottom: 10px
-      .work
-        padding: 10px 0
-        border-top: 1px solid #ccc
-
-</style>

@@ -1,30 +1,33 @@
 import request from '@/utils/request'
 
-export function getSubject(count,start) {
+export function getMovieList(category, count, start) {
   return request({
-    url: '/subject',
+    url: '/movie/' + category + '?count=' + count + '&start=' + start,
     method: 'get',
-    params:{count,start}
   })
 }
 
-export function getMovieList(count,start) {
+export function getSubject(subjectId) {
   return request({
-    url: '/movie/in_theaters',
+    url: '/movie/subject/' + subjectId,
     method: 'get',
-    params:{count,start}
   })
 }
 
 
-
-
-
-export function getList(params) {
+export function getCelebrity(celebrityID) {
   return request({
-    url: '/table/list',
+    url: 'movie/celebrity/' + celebrityID,
     method: 'get',
-    params
   })
 }
+
+export function searchList(searchText) {
+  return request({
+    url: '/search?q=' + searchText,
+    method: 'get',
+  })
+}
+
+
 

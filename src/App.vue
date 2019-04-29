@@ -9,7 +9,7 @@
 
 <script>
   import search from './components/search';
-  import simpleList from './views/simple-list';
+  import simpleList from './components/simple-list';
   import moreList from './views/more-list';
   export default {
     components: {

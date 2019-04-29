@@ -1,6 +1,6 @@
 <template>
-  <div class="headbar">
-    <h1 class="title">{{title}}</h1>
+  <div class="head-bar">
+    <h1 class="page-title">{{title}}</h1>
   </div>
 </template>
 
@@ -14,16 +14,3 @@
   }
 </script>
 
-<style lang="sass" type="text/sass">
-  .headbar
-    position: relative
-    .title
-      display: block
-      height: 40px
-      width: 100%
-      line-height: 40px
-      font-size: 20px
-      text-align: center
-      color: #fff
-      background-color: #39424a
-</style>

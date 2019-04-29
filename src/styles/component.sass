@@ -1,0 +1,114 @@
+.loading-wrapper
+  position: fixed
+  top: .8rem
+  bottom: 0
+  left: 0
+  right: 0
+  #loading-center
+    position: absolute
+    top: 45%
+    transform: translateY(-50%)
+
+
+//标题栏
+.head-bar
+  position: relative
+  .page-title
+    display: block
+    height: .80rem
+    line-height: .80rem
+    width: 100%
+    font-size: .36rem
+    text-align: center
+    color: #fff
+    background-color: #39424a
+//返回按钮
+.btn-back
+  position: absolute
+  top: 0
+  left: 0
+  width: .80rem
+  height: .80rem
+  background: url("../assets/icon-back.png") center center no-repeat
+  -webkit-background-size: .50rem .50rem
+  background-size: .50rem .50rem
+
+//搜索
+.search-wrapper
+  position: absolute
+  top: 0
+  right: 0
+  width: .80rem
+  height: .80rem
+  line-height: .80rem
+  .toggle-search-btn
+    display: inline-block
+    vertical-align: top
+    width: .80rem
+    height: .80rem
+    background: url("../assets/icon-search.png") center center no-repeat
+    -webkit-background-size: .50rem .50rem
+    background-size: .50rem .50rem
+  .search-box
+    width: 100%
+    height: .80rem
+    position: fixed
+    top: 0
+    left: 0
+    background-color: #39424a
+    padding-top: .1rem
+    z-index: 5
+    .text-input
+      display: inline-block
+      vertical-align: top
+      width: 4rem
+      height: .40rem
+      line-height: .40rem
+      font-size: .3rem
+      outline: none
+      color: #ffffff
+      background: transparent
+      padding: .10rem
+      padding-left: .3rem
+      border: 1px solid #ddd
+      -webkit-border-radius: .3rem
+      -moz-border-radius: .3rem
+      border-radius: .3rem
+    .btn-search, .btn-text-back
+      display: inline-block
+      vertical-align: top
+      width: 1.5rem
+      height: .60rem
+      line-height: .60rem
+      color: #ffffff
+      font-size: .3rem
+      text-align: center
+//评分组件
+.rating
+  position: relative
+  height: 16px
+  width: 80px
+  .rate-star-box
+    position: absolute
+    display: flex
+    top: 0
+    left: 0
+    height: 100%
+    width: 100%
+    overflow: hidden
+    fill: #ddd
+    &.top-star
+      fill: red
+    svg
+      height: 16px
+      flex: none
+  .rate-num
+    position: absolute
+    color: #000
+    display: block
+    top: 2px
+    left: 90px
+    height: 16px
+    line-height: 16px
+    vertical-align: bottom
+    font-size: 14px
