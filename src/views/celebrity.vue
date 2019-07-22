@@ -49,16 +49,9 @@
       }
     },
     methods:{
-      // 通过jsonp方法获取影人详细信息
       getCelebrity(){
         if(this.$route.params.id!==undefined) {
-          // this.$http.jsonp(celebrityUrl + this.$route.params.id).then((response) => {
-          //   this.celebrity = response.body;
-          //   this.hasData=true;
-          //   this.loading = false;
-          // });
           getCelebrity(this.celebrityId).then(response => {
-            console.log(response);
             this.celebrity = response.data
             this.loading = false
             this.hasData = true

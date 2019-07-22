@@ -75,14 +75,14 @@
         this.loading = true;
         if (this.searchText) {
           getSearchList(this.searchText, this.count, this.startPosition).then(response => {
-            console.log(response);
+            // console.log(response);
             this.movieList = response.data
             this.loading = false
             this.hasList = true
           })
         } else {
           getMovieList(this.category, this.count, this.startPosition).then(response => {
-            console.log(response);
+            // console.log(response);
             this.movieList = response.data
             this.loading = false
             this.hasList = true

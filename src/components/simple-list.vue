@@ -27,7 +27,6 @@
   import loading from './loading'
   import {getMovieList} from '../api/douban.js'
 
-  const APIKEY = '0df993c66c0c636e29ecbb5344252a4a';
 
 
   export default {
@@ -47,15 +46,8 @@
     methods: {
       getList() {
 
-        // this.$http.jsonp('https://api.douban.com/v2/movie/' + this.category + '?apikey=' + APIKEY +  '&count=' + this.count + '&start=' + this.startPosition).then((response) => {
-        //   console.log(response);
-        //   this.subjects = response.body.subjects;
-        //   this.hasData=true;
-        //   this.loading = false;
-        // });
-
         getMovieList(this.category, this.count, this.startPosition).then(response => {
-          console.log(response.data);
+          // console.log(response.data);
           this.subjects = response.data.subjects.splice(0, 3);
           this.loading = false
         })
