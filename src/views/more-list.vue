@@ -91,6 +91,7 @@
       },
       getCategory() {
         this.category = this.$route.params.category;
+        // console.log(this.$router);
       },
 
       // 上一页，当为第一页时不操作

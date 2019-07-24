@@ -5,9 +5,10 @@
     </div>
 
     <div v-show="showSearch" class="search-box">
-      <span @click.stop="toggleSearch" class="btn-text-back">返回</span>
       <input class="text-input" type="text" v-model="searchText" placeholder="请输入关键字" @keyup.enter="submit">
       <span class="btn-search" @click="submit">搜索</span>
+      <span @click.stop="toggleSearch" class="btn-close"></span>
+
     </div>
   </div>
 </template>

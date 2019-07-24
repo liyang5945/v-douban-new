@@ -1,7 +1,7 @@
 const port = 9528;
 
 module.exports = {
-  publicPath: '/',
+  publicPath: './',
   outputDir: 'dist',
   assetsDir: 'static',
   filenameHashing: true,
